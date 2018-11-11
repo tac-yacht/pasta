@@ -31,6 +31,6 @@ def lambda_handler(event, context):
 
     driver = webdriver.Chrome("./bin/chromedriver",chrome_options=options)
     driver.get(url)
-    title = driver.title
+    adit_item = driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").get_attribute("class")    
     driver.close()
-    return title
+    return adit_item
