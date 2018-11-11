@@ -1,10 +1,18 @@
 from selenium import webdriver
+import logging
 
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
+    code = event['placementInfo']['attributes']['code']
+    if not code:
+        raise Exception('attr[code] is undefined')
+    url = "https://ssl.jobcan.jp/m/work/accessrecord?_m=adit&code=" + code
+    logger.info("target url: %s",url)
+
     options = webdriver.ChromeOptions()
 
-    # のちほどダウンロードするバイナリを指定
     options.binary_location = "./bin/headless-chromium"
 
     # headlessで動かすために必要なオプション
@@ -21,10 +29,8 @@ def lambda_handler(event, context):
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--homedir=/tmp")
 
-    driver = webdriver.Chrome(
-        "./bin/chromedriver",
-        chrome_options=options)
-    driver.get("https://www.google.co.jp")
+    driver = webdriver.Chrome("./bin/chromedriver",chrome_options=options)
+    driver.get(url)
     title = driver.title
     driver.close()
     return title
