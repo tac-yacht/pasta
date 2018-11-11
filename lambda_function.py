@@ -30,7 +30,9 @@ def lambda_handler(event, context):
     options.add_argument("--homedir=/tmp")
 
     driver = webdriver.Chrome("./bin/chromedriver",chrome_options=options)
+    logger.info("init done")
     driver.get(url)
+    logger.info("open done:%s",driver.title)
     adit_item = driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").get_attribute("class")    
     driver.close()
     return adit_item
