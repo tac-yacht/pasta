@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     if not code:
         raise Exception('attr[code] is undefined')
     url = "https://ssl.jobcan.jp/m/work/accessrecord?_m=adit&code=" + code
-    logger.info("target url: %s",url)
+    logger.debug("target url: %s",url)
 
     options = webdriver.ChromeOptions()
 
@@ -33,6 +33,6 @@ def lambda_handler(event, context):
     logger.info("init done")
     driver.get(url)
     logger.info("open done:%s",driver.title)
-    adit_item = driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").get_attribute("class")    
+    driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").click()
     driver.close()
-    return adit_item
+    return
