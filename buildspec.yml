@@ -5,6 +5,7 @@ phases:
     commands:
       - mkdir -p bin/
       - pip install --upgrade pip
+
   pre_build:
     commands:
       - pip install -r requirements.txt -t .
@@ -14,6 +15,11 @@ phases:
       - curl -SL https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip -o chromedriver.zip
       - unzip chromedriver.zip -d bin/
       - rm chromedriver.zip
+
+  post_build:
+    commands:
+      - rm -rf .git/
+      - rm .gitignore
 
 artifacts:
   type: zip
