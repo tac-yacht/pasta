@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - mkdir -p bin/
+      - curl -SL https://github.com/adieuadieu/serverless-chrome/releases/download/v1.0.0-55/stable-headless-chromium-amazonlinux-2017-03.zip -o headless-chromium.zip
+      - unzip headless-chromium.zip -d bin/
+      - curl -SL https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip -o chromedriver.zip
+      - unzip chromedriver.zip -d bin/
+      - pip install -r requirements.txt
+
+artifacts:
+  type: zip
+  files:
+    - *
