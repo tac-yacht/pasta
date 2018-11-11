@@ -5,7 +5,7 @@ def lambda_handler(event, context):
     options = webdriver.ChromeOptions()
 
     # のちほどダウンロードするバイナリを指定
-    options.binary_location = "./bin/headless_chromium"
+    options.binary_location = "./bin/headless-chromium"
 
     # headlessで動かすために必要なオプション
     options.add_argument("--headless")
