@@ -49,7 +49,7 @@ def lambda_handler(event, context):
     driver.find_element_by_id("email").send_keys(email)
     driver.find_element_by_id("password").send_keys(password)
     #ログイン画面遷移
-    driver.find_element_by_xpath("//button[@type=\"submit\" and @value=\"ログイン\"]").click()
+    driver.find_element_by_xpath("//button[@type=\"submit\" and contains(text(),\"ログイン\")]").click()
     wait = WebDriverWait(driver, 60)
     element = wait.until(expected_conditions.visibility_of_element_located((By.XPATH, "//img[@alt=\"打刻\"]")))
 
