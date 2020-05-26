@@ -44,7 +44,7 @@ def lambda_handler(event, context):
     # ログインページ
     driver.get(loginURL)
     logger.info("open done:%s",driver.title)
-    log.debug(driver.current_url)
+    logger.debug(driver.current_url)
     #諸情報入力
     driver.find_element_by_id("client_id").send_keys(clientId)
     driver.find_element_by_id("email").send_keys(email)
@@ -58,6 +58,6 @@ def lambda_handler(event, context):
     driver.find_element_by_xpath("//img[@alt=\"打刻\"]").click()
 
 #    driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").click()
-    log.debug(driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").is_enabled())
+    logger.debug(driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").is_enabled())
     driver.close()
     return
