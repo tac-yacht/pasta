@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 import logging
 
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 loginURL = "https://ssl.jobcan.jp/login/mb-employee?lang_code=ja"
 
 def lambda_handler(event, context):
@@ -57,7 +57,6 @@ def lambda_handler(event, context):
     #打刻画面遷移
     driver.find_element_by_xpath("//img[@alt=\"打刻\"]").click()
 
-#    driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").click()
-    logger.debug(driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").is_enabled())
+    driver.find_element_by_xpath("//input[@type=\"submit\" and @value=\"打刻\"]").click()
     driver.close()
     return
