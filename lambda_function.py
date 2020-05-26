@@ -42,7 +42,7 @@ def lambda_handler(event, context):
     logger.info("init done")
 
     # ログインページ
-    driver.get(url)
+    driver.get(loginURL)
     logger.info("open done:%s",driver.title)
     #諸情報入力
     driver.find_element_by_id("client_id").send_keys(clientId)
