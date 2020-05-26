@@ -7,7 +7,7 @@ import logging
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
-loginURL = "https://ssl.jobcan.jp/login/mb-employee"
+loginURL = "https://ssl.jobcan.jp/login/mb-employee?lang_code=ja"
 
 def lambda_handler(event, context):
     clientId = event['placementInfo']['attributes']['clientId']
@@ -44,6 +44,7 @@ def lambda_handler(event, context):
     # ログインページ
     driver.get(loginURL)
     logger.info("open done:%s",driver.title)
+    log.debug(driver.current_url)
     #諸情報入力
     driver.find_element_by_id("client_id").send_keys(clientId)
     driver.find_element_by_id("email").send_keys(email)
